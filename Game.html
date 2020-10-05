@@ -1,0 +1,154 @@
+<!-- BEGIN of HTML -->
+<html>
+
+	<!-- BEGIN of Head -->
+	<head>
+	
+		<!-- BEGIN of Script -->
+		<script>
+		
+			//Function to play rock, paper, scissors Game
+			function startGame() {
+				
+				//Repeating until valid value is entered or Cancel button is pressed
+				do
+				{
+					//Requesting user to enter number of rounds to play
+					var rounds = prompt("How many rounds you want to play?");
+					
+					//Terminating program when Cancel button is pressed
+					if(rounds == null)
+						return;
+					
+					//Checking whether the value entered is an Integer OR not
+					if(Number.isInteger(parseInt(rounds)))
+					{	
+						//Converting the value to an Integer
+						rounds = parseInt(rounds);
+						
+						//Checking whether the value is less than or equal to zero OR not
+						if(rounds <= 0)	
+							//Displaying invalid value message when Invalid value is entered
+							alert("Invalid value entered!");
+					}
+					else	
+					{	
+						//Checking whether value is entered or not
+						if(rounds == '')
+							//Displaying message to enter a value
+							alert("Please enter a value!");
+						else						
+							//Displaying invalid value message when Invalid value is entered
+							alert("Invalid value entered!");
+					}
+				}while(!Number.isInteger(rounds) || rounds <= 0);
+				
+				
+				//Declaring variables to store number of rounds won, lost & tied
+				var wins, losses, ties;
+				
+				//Initializing number of rounds won, lost & tied
+				wins = losses = ties = 0;
+				
+				//Declaring variables to store user & computer choice
+				var user, computer;
+				
+				//Declaring iterator for loop
+				var i;
+				
+				//Repeating for each round
+				for (i = 0; i < rounds; ++i)
+				{
+					//Reading user choice
+					user = prompt("Choose r, p or s (rock, paper or scissors)");
+					
+					//Terminating program when Cancel button is pressed
+					if(user == null)
+						return;
+					
+					//Reading computer choice using random numbers
+					computer = Math.floor(Math.random() * 3);
+					
+					//Assigning relevant computer choice value
+					if(computer == 0)
+						computer = "r";
+					else if(computer == 1)
+						computer = "p";
+					else
+						computer = "s";
+					
+					/*
+					 * Comparing & displaying the result
+					 */
+					if(user == computer)
+					{
+						alert("It's a tie!");
+						++ties;
+					}
+					else
+					{
+						if(user == "r" && computer == "s")
+						{
+							alert("User wins!");
+							++wins;
+						}
+						else if(user == "r" && computer == "p")
+						{
+							alert("Computer wins!");
+							++losses;
+						}
+						else if(user == "s" && computer == "r")
+						{
+							alert("Computer wins!");
+							++losses;
+						}
+						else if(user == "s" && computer == "p")
+						{
+							alert("User wins!");
+							++wins;
+						}
+						else if(user == "p" && computer == "r")
+						{
+							alert("User wins!");
+							++wins;
+						}
+						else if(user == "p" && computer == "s")
+						{
+							alert("Computer wins!");
+							++losses;
+						}
+						else
+						{								
+							//Checking whether value is entered or not
+							if(user == '')
+								//Displaying message to enter a value
+								alert("Please enter a value!");
+							else
+								alert("Invalid choice!");
+							
+							//Repeating the iteration
+							--i;
+						}
+					}				
+				}
+
+				//Displaying total number of wins, losses & ties
+				alert("You won " + wins + " times, tied " + ties + " times and lost " + losses + " times");
+			}
+		</script>		
+		<!-- END of Script -->
+		
+	</head>	
+	<!-- END of Head -->	
+	
+	<!-- BEGIN of Body -->
+	
+	<!-- Calling startGame() function as HTML loads -->
+	<body onload="startGame()">
+	
+	</body>	
+	
+	<!-- END of Body -->
+	
+</html>
+<!-- END of HTML -->
